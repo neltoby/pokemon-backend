@@ -10,4 +10,5 @@
 *.sw?
 .env
 
+dist
 node_modules

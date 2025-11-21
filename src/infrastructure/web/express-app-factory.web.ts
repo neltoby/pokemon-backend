@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import morgan from 'morgan';
 import compression from 'compression';
 import { createPokemonRouter } from '../routes/pokemon.routes';
@@ -25,7 +25,17 @@ export class ExpressAppFactory {
       next();
     });
 
-    app.use(cors());
+    const corsOptions: CorsOptions = {
+    origin: [
+      'http://localhost:5173',                    // Vite dev
+      'https://pokemon-frontend-bmb2.vercel.app'  // Vercel prod
+    ],
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: false
+  };
+
+    app.use(cors(corsOptions));
     app.use(express.json({ limit: '100kb' }));
     app.use(compression());
     if (process.env.NODE_ENV !== 'production') {
