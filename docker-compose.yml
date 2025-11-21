@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: firefly-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      # Optional: initial DB name (our app uses `pokemon_app` by default)
+      MONGO_INITDB_DATABASE: pokemon_app
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
