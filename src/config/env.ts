@@ -9,4 +9,5 @@ export const env = {
   POKEAPI_BASE_URL:
     process.env.POKEAPI_BASE_URL || 'https://pokeapi.co/api/v2',
   NODE_ENV: process.env.NODE_ENV || 'development',
+  FRONT_END_URL: process.env.FRONT_END_URL || 'http://localhost:5173',
 };

@@ -9,6 +9,7 @@ import { FavoriteController } from '../../interface-adapters/controllers/favorit
 import { errorHandler } from '../../interfaces/http/middleware/error-handler.middleware';
 import { notFoundHandler } from '../../interfaces/http/middleware/not-found-handler.middleware';
 import rateLimit from 'express-rate-limit';
+import { env } from '../../config/env';
 
 export class ExpressAppFactory {
   static create(
@@ -27,8 +28,7 @@ export class ExpressAppFactory {
 
     const corsOptions: CorsOptions = {
     origin: [
-      'http://localhost:5173',                    // Vite dev
-      'https://pokemon-frontend-bmb2.vercel.app'  // Vercel prod
+      env.FRONT_END_URL
     ],
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
